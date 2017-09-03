@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>用户中心_道和酒业</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no, email=no" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<link href="themes/default/css/style.css" tppabs="http://daohem.gz11.hostadm.net/themes/default/css/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js" tppabs="http://daohem.gz11.hostadm.net/js/jquery.js"></script> 
+<script type="text/javascript" src="js/TouchSlide.1.1.js" tppabs="http://daohem.gz11.hostadm.net/js/TouchSlide.1.1.js"></script> 
+<script type="text/javascript" src="js/js.js" tppabs="http://daohem.gz11.hostadm.net/js/js.js"></script>
+</head><script type="text/javascript" src="js/common.js" tppabs="http://daohem.gz11.hostadm.net/js/common.js"></script><script type="text/javascript" src="js/jquery.downCount.js" tppabs="http://daohem.gz11.hostadm.net/js/jquery.downCount.js"></script><script type="text/javascript" src="js/function.js" tppabs="http://daohem.gz11.hostadm.net/js/function.js"></script><script type="text/javascript" src="js/register.js" tppabs="http://daohem.gz11.hostadm.net/js/register.js"></script><script type="text/javascript" src="js/utils.js" tppabs="http://daohem.gz11.hostadm.net/js/utils.js"></script><body>
+	<div id="page">
+    	<div class="title2">
+            <a href="javascript:window.history.back();" class="back"></a>
+        	<p>会员注册</p>
+        </div>
+    	
+        <div class="tixian1">
+        <form action="http://daohem.gz11.hostadm.net/user.php" method="post" name="formUser" onsubmit="return register();">
+        	<ul>
+                <li>
+                    <span>用 户 名：</span>
+                    <input type="text" class="text" name="username" id="username" onblur="is_registered(this.value);" placeholder="请填写用户名"/>
+                    <div class="clear"></div>
+                </li>
+            	<li>
+                	<span>手 机 号：</span>
+                    <input type="text" class="text" name="extend_field5" id="reg_username" onblur="get_pwd_check_phone(this.value)" placeholder="请填写手机号"/>
+                    <input type="button" class="button" value="获取验证码" id="get_code" onclick="send_pwd_code(this)"/>
+                    <div class="clear"></div>
+                </li>
+            	<li>
+                	<span>验证码：</span>
+                    <input type="hidden" id="randKey" value="960232" />
+                    <input type="text" class="text text2" name="getp_code" id="getp_code" onblur="get_pwd_code(this.value);" placeholder="请填写验证码" />
+                    <div class="clear"></div>
+                </li>
+            	<li>
+                	<span>密      码：</span>
+                    <input type="password" name="password" id="password" class="text text2" placeholder="请输入字母、数字或符号" onblur="check_password(this.value);"/>
+                    <div class="clear"></div>
+                </li>
+            	<li>
+                	<span>确认密码：</span>
+                    <input type="password" class="text text2" name="confirm_password" id="conform_password" placeholder="请输入字母、数字或符号" onblur="check_conform_password(this.value);"/>
+                    <div class="clear"></div>
+                </li>
+                <li class="gou"><input type="checkbox" name="agreement" checked="checked"/>我已阅读并接受<a href="javascript:if(confirm('http://daohem.gz11.hostadm.net/article.php?id=33  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ���������淢������, ��ֹ�����ء�  \n\n�����ڷ������ϴ���?'))window.location='http://daohem.gz11.hostadm.net/article.php?id=33'" tppabs="http://daohem.gz11.hostadm.net/article.php?id=33">《道和酒业服务协议》</a></li>
+                <br/>
+                <em style="color:#7d2c3b;padding:0 0.5rem; font-size:0.4rem;" id="notice"></em>
+                <li>
+                    <input name="act" type="hidden" value="act_register" >
+                    <input type="hidden" name="back_act" value="" />
+                    <input type="Submit" class="button_red" name="Submit" value="注  册" />
+                </li>
+            </ul>
+        </form>
+        </div>
+        
+        <div class="footer">
+        	<div class="foot">
+                <a href="..htm" tppabs="http://daohem.gz11.hostadm.net/." ><b class="b1"></b><p>首页</p></a>
+                <a href="category.php-id=1.htm" tppabs="http://daohem.gz11.hostadm.net/category.php?id=1" ><b class="b2"></b><p>商品专区</p></a>
+                <!--<a href="#"><b class="b3"></b><p>发现</p></a>-->
+                <a href="flow.php.htm" tppabs="http://daohem.gz11.hostadm.net/flow.php"><b class="b4"></b><p>购物车</p><div class="num">0</div></a>
+                <a href="user.php.htm" tppabs="http://daohem.gz11.hostadm.net/user.php"><b class="b5"></b><p>个人中心</p></a>
+                <div class="clear"></div>
+            </div>
+        </div>    </div>
+</body>
+</html>

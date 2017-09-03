@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>购物流程_道和酒业</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no, email=no" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<link href="themes/default/css/style.css" tppabs="http://daohem.gz11.hostadm.net/themes/default/css/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js" tppabs="http://daohem.gz11.hostadm.net/js/jquery.js"></script> 
+<script type="text/javascript" src="js/TouchSlide.1.1.js" tppabs="http://daohem.gz11.hostadm.net/js/TouchSlide.1.1.js"></script> 
+<script type="text/javascript" src="js/js.js" tppabs="http://daohem.gz11.hostadm.net/js/js.js"></script>
+</head> 
+<body>
+
+<script type="text/javascript" src="js/common.js" tppabs="http://daohem.gz11.hostadm.net/js/common.js"></script><script type="text/javascript" src="js/shopping_flow.js" tppabs="http://daohem.gz11.hostadm.net/js/shopping_flow.js"></script><script type="text/javascript" src="js/showdiv.js" tppabs="http://daohem.gz11.hostadm.net/js/showdiv.js"></script><script type="text/javascript">
+var user_name_empty = "请输入您的用户名！";
+var email_address_empty = "请输入您的电子邮件地址！";
+var email_address_error = "您输入的电子邮件地址格式不正确！";
+var new_password_empty = "请输入您的新密码！";
+var confirm_password_empty = "请输入您的确认密码！";
+var both_password_error = "您两次输入的密码不一致！";
+var show_div_text = "请点击更新购物车按钮";
+var show_div_exit = "关闭";
+  </script>
+	<div id="page">
+    	<div class="title2">
+            <a  class="back" href="..htm" tppabs="http://daohem.gz11.hostadm.net/."></a>
+            <!--<a class="bj">编辑</a>-->
+        	<p>购物车</p>
+        </div>
+    	<form id="formCart" name="formCart" method="post" action="flow.php-step=checkout.htm" tppabs="http://daohem.gz11.hostadm.net/flow.php?step=checkout" onsubmit=" return check_cart()">
+        <div class="gwc">
+        	<ul class="lachu">
+                                <li>
+                  <div class="con"><p style="font-size:.3rem;text-align:center;">您的购物车还是空的，赶紧行动吧！您可以：<br/><a style="color:#c30000" href="index.htm" tppabs="http://daohem.gz11.hostadm.net/">返回首页</a>或去<a style="color:#c30000" href="user.php-act=collection_list.htm" tppabs="http://daohem.gz11.hostadm.net/user.php?act=collection_list">我的收藏夹</a>看看</p></div>
+                </li>
+                            </ul>
+                    </div>
+        </form>
+    </div>
+<script type="text/javascript">
+/* 全选产品 */
+$(".checkAll").click(function() {
+    $('.subBox').attr("checked",this.checked); 
+    settlement();
+});
+//小计
+function settlement()
+{
+  var ct = 0, total = 0;
+  $('.goods_checkbox').each(function(){
+      var _this = $(this);
+      var _id   = parseFloat(_this.val());
+      //alert(_id);
+      if(_this.is(':checked') && _id>0){
+          //ct++;
+          total += parseFloat($('#subtotal'+_id).val()) * parseFloat($('#goods_number_'+_id).val());
+          ct += parseInt($('#goods_number_'+_id).val()); 
+
+      }
+  });
+
+  total = total.toFixed(2);
+
+  $('#selected_count').html(ct);
+  $('#total_desc').html('￥'+total+'元');
+}
+
+settlement();  
+/* 取消一个产品后,重新计算价格 */
+$('.goods_checkbox').click(function(){
+  settlement();
+});
+/* AJAX更新购物车 */
+function changenum(rec_id, diff)
+{
+  var old_number = Number($$('goods_number_' + rec_id).value);
+  var goods_number =Number($$('goods_number_' + rec_id).value) + Number(diff);
+  change_goods_number(rec_id,goods_number,old_number);
+}
+function change_goods_number(rec_id, goods_number, old_number)
+{
+    if(isNaN(parseInt(goods_number)))
+    {
+        alert('请输入数字！');
+        $$('goods_number_' +rec_id).value = old_number;
+        return false;
+    }
+    else if(parseInt(goods_number) < 1 || parseInt(goods_number) >999)
+    {
+        alert('输入商品数量在1——999之间！');
+        $$('goods_number_' +rec_id).value = old_number;
+        return false;
+    }
+    $.post('flow.php-step=ajax_update_cart.htm'/*tpa=http://daohem.gz11.hostadm.net/flow.php?step=ajax_update_cart*/, 'rec_id=' + rec_id +'&goods_number=' + goods_number, change_goods_number_response, 'JSON');
+}
+function change_goods_number_response(result)
+{
+  if (result.error == 0)
+  {
+    var rec_id = result.rec_id;
+    $$('goods_number_' +rec_id).value = result.goods_number;//更新数量
+    $$('goods_subtotal_' +rec_id).innerHTML = result.goods_subtotal;//更新小计
+    if (result.goods_number <= 0)
+    {// 数量为零则隐藏所在行
+      $$('tr_goods_' +rec_id).style.display = 'none';
+      $$('tr_goods_' +rec_id).innerHTML = '';
+    }
+    $$('total_desc').innerHTML =result.total_desc;//更新合计
+    settlement();
+    //$$('selected_count').innerHTML =
+    if ($$('ECS_CARTINFO'))
+    {//更新购物车数量
+      $$('ECS_CARTINFO').innerHTML = result.cart_info;
+    }
+  }
+  else if (result.message != '')
+  {
+    alert(result.message);
+  }
+}
+</script>
+  
+</body>
+</html>

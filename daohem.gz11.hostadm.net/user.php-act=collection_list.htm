@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>用户中心_道和酒业</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no, email=no" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<link href="themes/default/css/style.css" tppabs="http://daohem.gz11.hostadm.net/themes/default/css/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js" tppabs="http://daohem.gz11.hostadm.net/js/jquery.js"></script> 
+<script type="text/javascript" src="js/TouchSlide.1.1.js" tppabs="http://daohem.gz11.hostadm.net/js/TouchSlide.1.1.js"></script> 
+<script type="text/javascript" src="js/js.js" tppabs="http://daohem.gz11.hostadm.net/js/js.js"></script>
+</head><script type="text/javascript" src="js/common.js" tppabs="http://daohem.gz11.hostadm.net/js/common.js"></script><script type="text/javascript" src="js/jquery.downCount.js" tppabs="http://daohem.gz11.hostadm.net/js/jquery.downCount.js"></script><script type="text/javascript" src="js/function.js" tppabs="http://daohem.gz11.hostadm.net/js/function.js"></script><script type="text/javascript" src="js/user.js" tppabs="http://daohem.gz11.hostadm.net/js/user.js"></script><script type="text/javascript" src="themes/default/js/JQ_common.js" tppabs="http://daohem.gz11.hostadm.net/themes/default/js/JQ_common.js"></script>
+<body>
+	<div id="page">
+    	<div class="title2">
+            <a class="back" href="javascript:window.history.back();"></a>
+        	<p>登录</p>
+        </div>
+    	
+        <div class="dengl">
+        <form name="formLogin" action="http://daohem.gz11.hostadm.net/user.php" method="post" onSubmit="return userLogin()">
+        	<ul>
+            	<li>
+                	<span>手机号：</span>
+                    <input type="text" class="text" placeholder="手机号/用户名/邮箱" name="username" onblur="blurInputEle(this)"/>
+                    <div class="clear"></div>
+                </li>
+            	<li>
+                	<span>密码：</span>
+                    <input type="password" class="text" placeholder="登录密码" name="password"/>
+                    <div class="clear"></div>
+                </li>
+                <br/>
+                <em style="color:red;" id="notice"></em>
+            </ul>
+            <input type="hidden" name="act" value="act_login" />
+            <input type="hidden" name="back_act" value="user.php?act=collection_list" />
+            <input type="submit" class="button button_red" value="登  录" name="submit" />
+        </form>
+            <p class="p1"><a href="user.php-act=get_password.htm" tppabs="http://daohem.gz11.hostadm.net/user.php?act=get_password">忘记密码？</a></p>
+            <p class="p2">还没有账号？<a href="user.php-act=register.htm" tppabs="http://daohem.gz11.hostadm.net/user.php?act=register">立即注册</a></p>
+        </div>
+        
+        <div class="footer">
+        	<div class="foot">
+                <a href="..htm" tppabs="http://daohem.gz11.hostadm.net/." ><b class="b1"></b><p>首页</p></a>
+                <a href="category.php-id=1.htm" tppabs="http://daohem.gz11.hostadm.net/category.php?id=1" ><b class="b2"></b><p>商品专区</p></a>
+                <!--<a href="#"><b class="b3"></b><p>发现</p></a>-->
+                <a href="flow.php.htm" tppabs="http://daohem.gz11.hostadm.net/flow.php"><b class="b4"></b><p>购物车</p><div class="num">0</div></a>
+                <a href="user.php.htm" tppabs="http://daohem.gz11.hostadm.net/user.php"><b class="b5"></b><p>个人中心</p></a>
+                <div class="clear"></div>
+            </div>
+        </div>    </div>
+</body>
+</html>
